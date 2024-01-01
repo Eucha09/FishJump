@@ -1,33 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class PlayerController : MonoBehaviour
 {
-    float _jumpPower = 420.0f;
+    float _jumpVelocity = 8.5f;
+    float _angle;
 
     CapsuleCollider2D _collider2D;
+    Rigidbody2D _rb2d;
 
     void Start()
     {
         _collider2D = GetComponent<CapsuleCollider2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         IsGrounded();
         GetInput();
+        UpdateRotation();
     }
 
     void GetInput()
     {
-        if (Input.GetMouseButtonDown(0) == true)
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             if (IsGrounded())
             {
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpPower);
+                _rb2d.velocity = new Vector2(0.0f, _jumpVelocity);
             }
         }
+    }
+
+    void UpdateRotation()
+    {
+        float targetAngle;
+
+        targetAngle = Mathf.Atan2(_rb2d.velocity.y, 1.0f) * Mathf.Rad2Deg;
+        targetAngle = Mathf.Max(targetAngle, -10.0f);
+
+        _angle = Mathf.Lerp(_angle, targetAngle, Time.deltaTime * 10.0f);
+
+        transform.localRotation = Quaternion.Euler(0.0f, 0.0f, _angle);
     }
 
     public bool IsGrounded()

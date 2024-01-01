@@ -27,8 +27,8 @@ public class PlatformManager
 
     public float GetRandTime()
     {
-        float minTime = 1.5f;//0.7f;
-        float maxTime = 2.5f;//1.3f;
+        float minTime = 1.2f;
+        float maxTime = 1.8f;
         return UnityEngine.Random.Range(minTime, maxTime);
     }
 

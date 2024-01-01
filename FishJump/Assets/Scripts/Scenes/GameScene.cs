@@ -10,10 +10,13 @@ public class GameScene : BaseScene
 
         SceneType = Define.Scene.Game;
 
+        Screen.SetResolution(2960, 1440, true);
+
+        Managers.Resource.Instantiate("Background");
+
         Managers.Platform.AddNewPlatform(0.5f);
 
         GameObject player = Managers.Resource.Instantiate("Player");
-        player.transform.position = Vector3.zero;
     }
 
     public override void Clear()
