@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    float _jumpPower = 300.0f;
+    float _jumpPower = 420.0f;
 
     CapsuleCollider2D _collider2D;
 
@@ -42,7 +41,7 @@ public class PlayerController : MonoBehaviour
         else
             rayColor = Color.red;
         Debug.DrawRay(_collider2D.bounds.center, Vector2.down * (_collider2D.bounds.extents.y + extraHeight), rayColor);
-        Debug.Log(raycastHit.collider);
+        //Debug.Log(raycastHit.collider);
 
         if (raycastHit.collider != null)
             return true;

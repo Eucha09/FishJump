@@ -7,10 +7,12 @@ public class Managers : MonoBehaviour
     static Managers s_instance; // 유일성이 보장된다
     static Managers Instance { get { Init(); return s_instance; } } // 유일한 매니저를 갖고온다
 
-	#region Contents
-	//GameManagerEx _game = new GameManagerEx();
+    #region Contents
+    //GameManagerEx _game = new GameManagerEx();
+    PlatformManager _platform = new PlatformManager();
 
     //public static GameManagerEx Game {  get { return Instance._game; } }
+    public static PlatformManager Platform { get { return Instance._platform; } }
 	#endregion
 
 	#region Core
@@ -58,6 +60,8 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
+
+            s_instance._platform.Init();
         }		
 	}
 
@@ -68,5 +72,7 @@ public class Managers : MonoBehaviour
         Scene.Clear();
         UI.Clear();
         Pool.Clear();
+
+        Platform.Clear();
     }
 }
