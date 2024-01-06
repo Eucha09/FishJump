@@ -5,11 +5,12 @@ using UnityEngine.U2D;
 
 public class PlayerController : MonoBehaviour
 {
-    float _jumpVelocity = 8.5f;
+    float _jumpVelocity = 12.0f;
     float _angle;
 
     CapsuleCollider2D _collider2D;
     Rigidbody2D _rb2d;
+    CameraController _camera;
 
     string _curPlatformName;
 
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     {
         _collider2D = GetComponent<CapsuleCollider2D>();
         _rb2d = GetComponent<Rigidbody2D>();
+
+        _camera = Camera.main.GetComponent<CameraController>();
     }
 
     void Update()
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
             if (raycastHit.collider.name != _curPlatformName)
             {
                 Managers.Game.AddScore();
+                _camera.CameraFollow(transform.position);
                 _curPlatformName = raycastHit.collider.name;
             }
             rayColor = Color.green;
@@ -73,5 +77,11 @@ public class PlayerController : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Destroy")
+            Debug.Log("Game Over");
     }
 }

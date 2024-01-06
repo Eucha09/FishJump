@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Vector3 _offset = new Vector3(0.0f, 0.0f, -10.0f);
+    float _speed = 1.0f;
+    float _offset = -2.0f;
+    Vector3 _followPos;
+    bool _boost;
 
     GameObject _player;
 
@@ -15,6 +18,21 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = _player.transform.position + _offset;
+        float dist = _followPos.y - transform.position.y;
+        if (_boost && dist < _offset)
+        {
+            _boost = false;
+        }
+
+        if (_boost)
+            transform.position = transform.position + Vector3.up * _speed * 4.0f * Time.deltaTime;
+        else
+            transform.position = transform.position + Vector3.up * _speed * Time.deltaTime;
+    }
+
+    public void CameraFollow(Vector3 pos)
+    {
+        _followPos = pos;
+        _boost = true;
     }
 }

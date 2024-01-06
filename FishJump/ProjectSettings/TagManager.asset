@@ -6,6 +6,7 @@ TagManager:
   tags:
   - L_Platform
   - R_Platform
+  - Destroy
   layers:
   - Default
   - TransparentFX
