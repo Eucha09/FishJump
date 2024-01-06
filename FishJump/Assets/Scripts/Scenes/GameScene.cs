@@ -19,6 +19,12 @@ public class GameScene : BaseScene
         GameObject player = Managers.Resource.Instantiate("Player");
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+    }
+
     public override void Clear()
     {
 
