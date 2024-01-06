@@ -28,6 +28,9 @@ public class PlatformGroup : MonoBehaviour
 
     public void Update()
     {
+        if (Managers.Game.IsGameOver)
+            return;
+
         if (_missionComplete == false && CheckPlatformsDeactivate())
         {
             _missionComplete = true;

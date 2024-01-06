@@ -25,6 +25,7 @@ public class UI_Score : UI_Scene
 
     public void UpdateScoreText()
     {
-        GetText((int)Texts.ScoreText).text = Managers.Game.Score.ToString();
+        int score = Mathf.Max(Managers.Game.Score, 0);
+        GetText((int)Texts.ScoreText).text = score.ToString();
     }
 }

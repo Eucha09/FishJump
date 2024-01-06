@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Managers.Game.IsGameOver)
+            return;
+
         IsGrounded();
         GetInput();
         UpdateRotation();
@@ -82,6 +85,6 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Destroy")
-            Debug.Log("Game Over");
+            Managers.Game.GameOver();
     }
 }

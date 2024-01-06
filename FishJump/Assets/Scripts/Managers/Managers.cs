@@ -74,5 +74,6 @@ public class Managers : MonoBehaviour
         Pool.Clear();
 
         Platform.Clear();
+        Game.Clear();
     }
 }

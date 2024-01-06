@@ -19,6 +19,8 @@ public class Platform : MonoBehaviour
 
     void Update()
     {
+        if (Managers.Game.IsGameOver)
+            return;
         if (Arrived)
             return;
         if (_curTime >= _destTime)

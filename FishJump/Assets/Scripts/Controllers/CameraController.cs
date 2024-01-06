@@ -18,6 +18,9 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        if (Managers.Game.IsGameOver)
+            return;
+
         float dist = _followPos.y - transform.position.y;
         if (_boost && dist < _offset)
         {
