@@ -17,6 +17,8 @@ public class GameScene : BaseScene
         Managers.Platform.AddNewPlatform(0.5f);
 
         GameObject player = Managers.Resource.Instantiate("Player");
+
+        Managers.UI.ShowSceneUI<UI_Score>();
     }
 
     void Update()

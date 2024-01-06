@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlatformGroup : MonoBehaviour
@@ -24,13 +26,6 @@ public class PlatformGroup : MonoBehaviour
         }
     }
 
-    public float GetRandTime()
-    {
-        float minTime = 1.5f;//0.7f;
-        float maxTime = 2.5f;//1.3f;
-        return UnityEngine.Random.Range(minTime, maxTime);
-    }
-
     public void Update()
     {
         if (_missionComplete == false && CheckPlatformsDeactivate())
@@ -52,5 +47,13 @@ public class PlatformGroup : MonoBehaviour
             }
         }
         return deactivate;
+    }
+
+    public void SetName(string name)
+    {
+        foreach (Platform platform in _platforms)
+        {
+            platform.gameObject.name = name;
+        }
     }
 }

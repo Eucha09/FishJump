@@ -8,10 +8,10 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } } // 유일한 매니저를 갖고온다
 
     #region Contents
-    //GameManagerEx _game = new GameManagerEx();
+    GameManagerEx _game = new GameManagerEx();
     PlatformManager _platform = new PlatformManager();
 
-    //public static GameManagerEx Game {  get { return Instance._game; } }
+    public static GameManagerEx Game {  get { return Instance._game; } }
     public static PlatformManager Platform { get { return Instance._platform; } }
 	#endregion
 

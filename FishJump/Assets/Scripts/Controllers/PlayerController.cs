@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     CapsuleCollider2D _collider2D;
     Rigidbody2D _rb2d;
 
+    string _curPlatformName;
+
     void Start()
     {
         _collider2D = GetComponent<CapsuleCollider2D>();
@@ -54,7 +56,14 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.Raycast(_collider2D.bounds.center, Vector2.down, _collider2D.bounds.extents.y + extraHeight, layermask);
         Color rayColor;
         if (raycastHit.collider != null)
+        {
+            if (raycastHit.collider.name != _curPlatformName)
+            {
+                Managers.Game.AddScore();
+                _curPlatformName = raycastHit.collider.name;
+            }
             rayColor = Color.green;
+        }
         else
             rayColor = Color.red;
         Debug.DrawRay(_collider2D.bounds.center, Vector2.down * (_collider2D.bounds.extents.y + extraHeight), rayColor);
