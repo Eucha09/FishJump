@@ -10,7 +10,7 @@ public class TitleScene : BaseScene
 
         SceneType = Define.Scene.Title;
 
-        Screen.SetResolution(2960, 1440, true);
+        Screen.SetResolution(1440, 2960, true);
 
         Managers.UI.ShowSceneUI<UI_TitleScene>();
     }
