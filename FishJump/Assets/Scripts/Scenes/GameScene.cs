@@ -12,7 +12,7 @@ public class GameScene : BaseScene
 
         Screen.SetResolution(1440, 2960, true);
 
-        Managers.Resource.Instantiate("Background");
+        Managers.Resource.Instantiate("Background/Background");
 
         Managers.Platform.AddNewPlatform(0.5f);
 
