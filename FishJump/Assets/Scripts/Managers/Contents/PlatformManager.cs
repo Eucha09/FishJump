@@ -1,6 +1,7 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class PlatformType
@@ -37,7 +38,7 @@ public class PlatformManager
         if (!_isFirst && _curTime < _timeToBeCreated)
             return;
 
-        GameObject newPlatform = Managers.Resource.Instantiate("PlatformGroup");
+        GameObject newPlatform = CreatePlatformObject();
         newPlatform.transform.position = _createPos;
 
         if (_isFirst)
@@ -71,6 +72,22 @@ public class PlatformManager
             _createPos = new Vector2(_createPos.x, _createPos.y + _heightBetweenPlatform);
 
         _addPlatform = false;
+    }
+
+    public GameObject CreatePlatformObject()
+    {
+        GameObject newPlatform = null;
+
+        if (_createPos.y <= 53.0f)
+            newPlatform = Managers.Resource.Instantiate("Platform/Seeweed");
+        else if (_createPos.y <= 128.0f)
+            newPlatform = Managers.Resource.Instantiate("Platform/Wood");
+        else if (_createPos.y <= 163.0f)
+            newPlatform = Managers.Resource.Instantiate("Platform/Cloud1");
+        else
+            newPlatform = Managers.Resource.Instantiate("Platform/Cloud2");
+
+        return newPlatform;
     }
 
     public void AddNewPlatform(bool isFirst = false)
