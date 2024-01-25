@@ -21,10 +21,8 @@ public class Define
 
 	public enum State
 	{
-		Die,
-		Moving,
 		Idle,
-		Skill,
+		Jump,
 	}
 
     public enum Layer

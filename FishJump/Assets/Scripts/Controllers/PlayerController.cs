@@ -5,6 +5,29 @@ using UnityEngine.U2D;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    protected Define.State _state = Define.State.Idle;
+
+    public virtual Define.State State
+    {
+        get { return _state; }
+        set
+        {
+            _state = value;
+
+            Animator anim = GetComponent<Animator>();
+            switch (_state)
+            {
+                case Define.State.Idle:
+                    anim.CrossFade("IDLE", 0.1f);
+                    break;
+                case Define.State.Jump:
+                    anim.CrossFade("JUMP", 0.1f);
+                    break;
+            }
+        }
+    }
+
     float _jumpVelocity = 12.0f;
     float _angle;
 
@@ -13,6 +36,7 @@ public class PlayerController : MonoBehaviour
     CameraController _camera;
 
     string _curPlatformName;
+    bool _isJumping;
 
     void Start()
     {
@@ -20,6 +44,8 @@ public class PlayerController : MonoBehaviour
         _rb2d = GetComponent<Rigidbody2D>();
 
         _camera = Camera.main.GetComponent<CameraController>();
+
+        State = Define.State.Idle;
     }
 
     void Update()
@@ -27,7 +53,17 @@ public class PlayerController : MonoBehaviour
         if (Managers.Game.IsGameOver)
             return;
 
-        IsGrounded();
+        if (!IsGrounded() && !_isJumping)
+        {
+            _isJumping = true;
+            State = Define.State.Jump;
+        }
+        if (IsGrounded() && _isJumping)
+        {
+            _isJumping = false;
+            State = Define.State.Idle;
+        }
+
         GetInput();
         UpdateRotation();
     }
@@ -39,6 +75,7 @@ public class PlayerController : MonoBehaviour
             if (IsGrounded())
             {
                 _rb2d.velocity = new Vector2(0.0f, _jumpVelocity);
+                State = Define.State.Jump;
             }
         }
     }
@@ -48,11 +85,11 @@ public class PlayerController : MonoBehaviour
         float targetAngle;
 
         targetAngle = Mathf.Atan2(_rb2d.velocity.y, 1.0f) * Mathf.Rad2Deg;
-        targetAngle = Mathf.Max(targetAngle, -10.0f);
+        targetAngle = Mathf.Max(targetAngle, 0.0f);
 
         _angle = Mathf.Lerp(_angle, targetAngle, Time.deltaTime * 10.0f);
 
-        transform.localRotation = Quaternion.Euler(0.0f, 0.0f, _angle);
+        transform.localRotation = Quaternion.Euler(0.0f, 0.0f, -_angle);
     }
 
     public bool IsGrounded()
@@ -65,6 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             if (raycastHit.collider.name != _curPlatformName)
             {
+                State = Define.State.Idle;
                 Managers.Game.AddScore();
                 _curPlatformName = raycastHit.collider.name;
                 if (raycastHit.collider.transform.parent.GetComponent<PlatformGroup>().IsMovingPlatform)

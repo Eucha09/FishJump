@@ -57,7 +57,7 @@ public class PlatformManager
                     newPlatform.GetComponent<PlatformGroup>().Activate(1.0f, _platformType.isMovingPlatform);
                     break;
                 case Define.SpeedType.Variation:
-                    newPlatform.GetComponent<PlatformGroup>().Activate(0.3f, _platformType.isMovingPlatform);
+                    newPlatform.GetComponent<PlatformGroup>().Activate(0.4f, _platformType.isMovingPlatform);
                     break;
             }
         }
@@ -161,7 +161,7 @@ public class PlatformManager
 
         // is moving
         rand = Random.Range(0, 100);
-        if (level > 0 && rand < 20)
+        if (level > 0 && rand < 10)
             pt.isMovingPlatform = true;
         else
             pt.isMovingPlatform = false;
@@ -172,5 +172,8 @@ public class PlatformManager
     public void Clear()
     {
         _createPos = new Vector2(0.0f, -4.0f);
+        _index = 0;
+        _previousType = null;
+        _platformType = null;
     }
 }

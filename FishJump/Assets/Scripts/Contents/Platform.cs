@@ -27,11 +27,11 @@ public class Platform : MonoBehaviour
             Arrived = true;
 
 
-        if (_destTime < 0.4f && _curTime >= 0.1f)
+        if (_destTime < 0.5f && _curTime >= 0.1f)
         {
             _startPos = transform.position;
             _curTime = 0.0f;
-            _destTime = 1.0f;
+            _destTime = 2.0f;
         }
 
         Vector2 newPos = Vector2.Lerp(_startPos, _destPos, _curTime / _destTime);

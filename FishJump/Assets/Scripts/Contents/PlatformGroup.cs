@@ -44,7 +44,9 @@ public class PlatformGroup : MonoBehaviour
         }
         else if (_isMoving)
         {
-            GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, _speed);
+            GameObject player = GameObject.Find("Player");
+            if (player != null && transform.position.y < player.transform.position.y)
+                GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, _speed);
             _isMoving = false;
             IsMovingPlatform = false;
         }

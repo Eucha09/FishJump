@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    float _speed = 0.5f;
+    float _speed = 0.8f;
     float _boostSpeed = 4;
     float _offset = -2.0f;
     Vector3 _followPos;

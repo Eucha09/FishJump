@@ -10,11 +10,9 @@ public class Managers : MonoBehaviour
     #region Contents
     GameManagerEx _game = new GameManagerEx();
     PlatformManager _platform = new PlatformManager();
-    LevelManager _level = new LevelManager();
 
     public static GameManagerEx Game {  get { return Instance._game; } }
     public static PlatformManager Platform { get { return Instance._platform; } }
-    public static LevelManager Level {  get { return Instance._level; } }
 	#endregion
 
 	#region Core

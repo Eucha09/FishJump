@@ -23,6 +23,14 @@ public class Background : MonoBehaviour
         "Sky1",
         "Sky1-2",
         "Sky2",
+        "Sky2",
+        "Sky2",
+        "Sky2",
+        "Sky2",
+        "Sky2",
+        "Sky2",
+        "Sky2",
+        "Sky2",
         "Sky2"
     };
 
