@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    float _speed = 1.0f;
+    float _speed = 0.5f;
+    float _boostSpeed = 4;
     float _offset = -2.0f;
     Vector3 _followPos;
     bool _boost;
@@ -28,7 +29,7 @@ public class CameraController : MonoBehaviour
         }
 
         if (_boost)
-            transform.position = transform.position + Vector3.up * _speed * 4.0f * Time.deltaTime;
+            transform.position = transform.position + Vector3.up * _boostSpeed * Time.deltaTime;
         else
             transform.position = transform.position + Vector3.up * _speed * Time.deltaTime;
     }

@@ -34,4 +34,59 @@ namespace Data
 
     #endregion
 	*/
+
+    #region TimeToClose
+
+    [Serializable]
+    public class TimeToClose
+    {
+        public int level;
+        public int slow;
+        public int normal;
+        public int fast;
+        public int variation;
+    }
+
+    [Serializable]
+    public class TimeToCloseData : ILoader<int, TimeToClose>
+    {
+        public List<TimeToClose> timeToClose = new List<TimeToClose>();
+
+        public Dictionary<int, TimeToClose> MakeDict()
+        {
+            Dictionary<int, TimeToClose> dict = new Dictionary<int, TimeToClose>();
+            foreach (TimeToClose ttc in timeToClose)
+                dict.Add(ttc.level, ttc);
+            return dict;
+        }
+    }
+
+    #endregion
+
+    #region TimeToBeCreated
+
+    [Serializable]
+    public class TimeToBeCreated
+    {
+        public int level;
+        public int slow;
+        public int normal;
+        public int fast;
+    }
+
+    [Serializable]
+    public class TimeToBeCreatedData : ILoader<int, TimeToBeCreated>
+    {
+        public List<TimeToBeCreated> timeToBeCreated = new List<TimeToBeCreated>();
+
+        public Dictionary<int, TimeToBeCreated> MakeDict()
+        {
+            Dictionary<int, TimeToBeCreated> dict = new Dictionary<int, TimeToBeCreated>();
+            foreach (TimeToBeCreated ttbc in timeToBeCreated)
+                dict.Add(ttbc.level, ttbc);
+            return dict;
+        }
+    }
+
+    #endregion
 }

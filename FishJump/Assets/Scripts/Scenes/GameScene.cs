@@ -14,7 +14,7 @@ public class GameScene : BaseScene
 
         Managers.Resource.Instantiate("Background/Background");
 
-        Managers.Platform.AddNewPlatform(0.5f);
+        Managers.Platform.AddNewPlatform(true);
 
         GameObject player = Managers.Resource.Instantiate("Player");
 

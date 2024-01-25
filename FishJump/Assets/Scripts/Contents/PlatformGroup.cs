@@ -9,13 +9,20 @@ public class PlatformGroup : MonoBehaviour
     Platform[] _platforms;
     bool _missionComplete = false;
 
+    public bool IsMovingPlatform;
+    bool _isMoving;
+    Vector3 _destPos;
+    float _speed = 12.0f;
+
     private void Start()
     {
-
+        _destPos = transform.position;
     }
 
-    public void Activate(float movingTime)
+    public void Activate(float movingTime, bool isMovingPlatform)
     {
+        IsMovingPlatform = isMovingPlatform;
+
         _platforms = GetComponentsInChildren<Platform>();
         foreach (Platform platform in _platforms)
         {
@@ -31,7 +38,24 @@ public class PlatformGroup : MonoBehaviour
         if (Managers.Game.IsGameOver)
             return;
 
-        if (_missionComplete == false && CheckPlatformsDeactivate())
+        if (_isMoving && transform.position.y < _destPos.y)
+        {
+            transform.Translate(Vector3.up * _speed * Time.deltaTime);
+        }
+        else if (_isMoving)
+        {
+            GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, _speed);
+            _isMoving = false;
+            IsMovingPlatform = false;
+        }
+
+        if (_isMoving == false && IsMovingPlatform && CheckPlatformsDeactivate())
+        {
+            _destPos = transform.position + Vector3.up * 2.366f;
+            _isMoving = true;
+        }
+
+        if (_isMoving == false && _missionComplete == false && CheckPlatformsDeactivate())
         {
             _missionComplete = true;
             Managers.Platform.AddNewPlatform();

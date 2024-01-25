@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Define
 {
+    public enum SpeedType
+    {
+        Slow,
+        Normal,
+        Fast,
+        Variation,
+    }
+
     public enum WorldObject
     {
         Unknown,

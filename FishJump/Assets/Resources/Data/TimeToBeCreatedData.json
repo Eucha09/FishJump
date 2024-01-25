@@ -1,0 +1,46 @@
+{
+  "timeToBeCreated": [
+    {
+      "level": "0",
+      "slow": "0",
+      "normal": "0",
+      "fast": "100"
+    },
+    {
+      "level": "1",
+      "slow": "20",
+      "normal": "60",
+      "fast": "20"
+    },
+    {
+      "level": "2",
+      "slow": "20",
+      "normal": "40",
+      "fast": "40"
+    },
+    {
+      "level": "3",
+      "slow": "10",
+      "normal": "40",
+      "fast": "50"
+    },
+    {
+      "level": "4",
+      "slow": "10",
+      "normal": "30",
+      "fast": "60"
+    },
+    {
+      "level": "5",
+      "slow": "0",
+      "normal": "30",
+      "fast": "70"
+    },
+    {
+      "level": "6",
+      "slow": "0",
+      "normal": "20",
+      "fast": "80"
+    }
+  ]
+} 

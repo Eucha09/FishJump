@@ -66,8 +66,11 @@ public class PlayerController : MonoBehaviour
             if (raycastHit.collider.name != _curPlatformName)
             {
                 Managers.Game.AddScore();
-                _camera.CameraFollow(transform.position);
                 _curPlatformName = raycastHit.collider.name;
+                if (raycastHit.collider.transform.parent.GetComponent<PlatformGroup>().IsMovingPlatform)
+                    _camera.CameraFollow(transform.position + Vector3.up * 2.366f);
+                else
+                    _camera.CameraFollow(transform.position);
             }
             rayColor = Color.green;
         }
