@@ -17,11 +17,6 @@ public class TitleScene : BaseScene
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Managers.Scene.LoadScene(Define.Scene.Game);
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
     }
