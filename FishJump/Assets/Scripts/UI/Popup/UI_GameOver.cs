@@ -25,7 +25,7 @@ public class UI_GameOver : UI_Popup
         Bind<Text>(typeof(Texts));
 
         GetText((int)Texts.Score).text = Managers.Game.Score.ToString();
-        GetText((int)Texts.HighScore).text = Managers.Game.HighScore.ToString();
+        GetText((int)Texts.HighScore).text = Managers.Game.TodayHighScore.ToString();
         GetButton((int)Buttons.RetryButton).gameObject.BindEvent(OnRetryButton);
     }
 

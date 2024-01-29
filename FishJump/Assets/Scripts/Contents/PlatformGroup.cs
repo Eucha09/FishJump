@@ -9,6 +9,8 @@ public class PlatformGroup : MonoBehaviour
     Platform[] _platforms;
     bool _missionComplete = false;
 
+    GameObject _player = null;
+
     public bool IsMovingPlatform;
     bool _isMoving;
     Vector3 _destPos;
@@ -40,13 +42,14 @@ public class PlatformGroup : MonoBehaviour
 
         if (_isMoving && transform.position.y < _destPos.y)
         {
+            if (_player != null)
+                _player.transform.position += Vector3.up * _speed * Time.deltaTime;
             transform.Translate(Vector3.up * _speed * Time.deltaTime);
         }
         else if (_isMoving)
         {
-            GameObject player = GameObject.Find("Player");
-            if (player != null && transform.position.y < player.transform.position.y)
-                GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, _speed);
+            if (_player != null)
+                _player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, _speed);
             _isMoving = false;
             IsMovingPlatform = false;
         }
@@ -83,6 +86,22 @@ public class PlatformGroup : MonoBehaviour
         foreach (Platform platform in _platforms)
         {
             platform.gameObject.name = name;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            _player = collision.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            _player = null;
         }
     }
 }

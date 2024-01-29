@@ -13,6 +13,7 @@ public class GameScene : BaseScene
         Screen.SetResolution(1440, 2960, true);
 
         Managers.Resource.Instantiate("Background/Background");
+        Managers.Sound.Play("Lost in heaven", Define.Sound.Bgm, 0.2f);
 
         Managers.Platform.AddNewPlatform(true);
 
