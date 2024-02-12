@@ -22,10 +22,34 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_Score>();
     }
 
+    int _clickCount = 0;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _clickCount++;
+
+            if (Managers.UI.PopupUICount() == 0)
+                Managers.UI.ShowPopupUI<UI_ClickBackButton>();
+            else
+                Managers.UI.ClosePopupUI();
+
+            if (!IsInvoking("DoubleClick"))
+            {
+                Invoke("DoubleClick", 1.0f);
+            }
+        }
+        else if (_clickCount == 2)
+        {
+            CancelInvoke("DoubleClick");
             Application.Quit();
+        }
+    }
+
+    void DoubleClick()
+    {
+        _clickCount = 0;
     }
 
     public override void Clear()

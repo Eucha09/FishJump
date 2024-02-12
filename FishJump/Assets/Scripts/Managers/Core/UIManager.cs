@@ -93,6 +93,11 @@ public class UIManager
 		return popup;
     }
 
+    public int PopupUICount()
+    {
+        return _popupStack.Count;
+    }
+
     public void ClosePopupUI(UI_Popup popup)
     {
 		if (_popupStack.Count == 0)
