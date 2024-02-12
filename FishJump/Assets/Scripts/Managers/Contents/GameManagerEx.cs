@@ -7,30 +7,12 @@ public class GameManagerEx
 {
     public bool IsGameOver { get; private set; }
     public int Score { get; private set; } = -1;
-    public int HighScore
-    {
-        get { return PlayerPrefs.GetInt("HighScore"); }
-        set { PlayerPrefs.SetInt("HighScore", value); }
-    }
-    public int TodayHighScore
-    {
-        get { return PlayerPrefs.GetInt("TodayHighScore"); }
-    }
+    public int HighScore { get { ScoreInit(); return PlayerPrefs.GetInt("HighScore"); } }
+    public int TodayHighScore { get { ScoreInit(); return PlayerPrefs.GetInt("TodayHighScore"); } }
 
     public void Init()
     {
-        if (PlayerPrefs.HasKey("TodayHighScore") && PlayerPrefs.HasKey("ScoreDate"))
-        {
-            string savedDateString = PlayerPrefs.GetString("ScoreDate");
-            DateTime savedDate = DateTime.Parse(savedDateString);
-            DateTime currentDate = DateTime.Now;
-
-            if (currentDate.Date > savedDate.Date)
-            {
-                PlayerPrefs.DeleteKey("TodayHighScore");
-                PlayerPrefs.DeleteKey("ScoreDate");
-            }
-        }
+        ScoreInit();
     }
 
     public void AddScore()
@@ -47,7 +29,8 @@ public class GameManagerEx
         SaveScore();
         Managers.UI.ShowPopupUI<UI_GameOver>();
     }
-    void SaveScore()
+
+    void ScoreInit()
     {
         if (PlayerPrefs.HasKey("TodayHighScore") && PlayerPrefs.HasKey("ScoreDate"))
         {
@@ -61,6 +44,11 @@ public class GameManagerEx
                 PlayerPrefs.DeleteKey("ScoreDate");
             }
         }
+    }
+
+    void SaveScore()
+    {
+        ScoreInit();
 
         PlayerPrefs.SetInt("TodayHighScore", Mathf.Max(TodayHighScore, Score));
         PlayerPrefs.SetString("ScoreDate", DateTime.Now.ToString());
