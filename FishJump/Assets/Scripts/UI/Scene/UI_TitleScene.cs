@@ -46,6 +46,6 @@ public class UI_TitleScene : UI_Scene
 
     public void OnSettingsButton(PointerEventData data)
     {
-        //Managers.UI.ShowPopupUI<UI_Settings>();
+        Managers.UI.ShowPopupUI<UI_Settings>();
     }
 }

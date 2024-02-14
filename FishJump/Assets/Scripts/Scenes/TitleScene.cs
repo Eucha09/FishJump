@@ -13,6 +13,8 @@ public class TitleScene : BaseScene
         Screen.SetResolution(1440, 2960, true);
 
         Managers.UI.ShowSceneUI<UI_TitleScene>();
+
+        Managers.Sound.Play("Lost in heaven", Define.Sound.Bgm);
     }
 
     int _clickCount = 0;

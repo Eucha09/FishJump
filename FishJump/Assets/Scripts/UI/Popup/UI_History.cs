@@ -19,8 +19,8 @@ public class UI_History : UI_Popup
         EventAuthButton2,
     }
 
-    int _eventScore1 = 20;
-    int _eventScore2 = 80;
+    int _eventScore1 = 0;
+    int _eventScore2 = 0;
 
     public override void Init()
     {
@@ -32,6 +32,8 @@ public class UI_History : UI_Popup
         GetText((int)Texts.HighScore).text = Managers.Game.HighScore.ToString();
         GetText((int)Texts.TodayHighScore).text = Managers.Game.TodayHighScore.ToString();
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
+        GetButton((int)Buttons.EventAuthButton1).gameObject.BindEvent(OnEventAuthButton);
+        GetButton((int)Buttons.EventAuthButton2).gameObject.BindEvent(OnEventAuthButton);
     }
 
     void Update()
@@ -43,5 +45,10 @@ public class UI_History : UI_Popup
     public void OnCloseButton(PointerEventData data)
     {
         Managers.UI.ClosePopupUI();
+    }
+
+    public void OnEventAuthButton(PointerEventData data)
+    {
+        Managers.UI.ShowPopupUI<UI_StaffOnly>();
     }
 }
