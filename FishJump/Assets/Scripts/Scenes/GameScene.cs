@@ -33,7 +33,7 @@ public class GameScene : BaseScene
             if (Managers.UI.PopupUICount() == 0)
                 Managers.UI.ShowPopupUI<UI_ClickBackButton>();
             else
-                Managers.UI.ClosePopupUI();
+                Managers.Scene.LoadScene(Define.Scene.Title);
 
             if (!IsInvoking("DoubleClick"))
             {

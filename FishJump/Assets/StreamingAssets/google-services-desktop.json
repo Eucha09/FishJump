@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156900488456",
+    "project_id": "sangango",
+    "storage_bucket": "sangango.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156900488456:android:302d15b3b85f65484ce8bd",
+        "android_client_info": {
+          "package_name": "com.sangango.fishjump"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJwRHIOvRnLhPoea4NTdYLnKcy0oZJ6pI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

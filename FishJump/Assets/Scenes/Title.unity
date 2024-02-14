@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_TitleScene
       objectReference: {fileID: 0}
+    - target: {fileID: 6277708496997152884, guid: bf58c0035643e894aa14a207c662dbeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8574379037763805757, guid: bf58c0035643e894aa14a207c662dbeb, type: 3}
       propertyPath: m_SortingOrder
       value: 0

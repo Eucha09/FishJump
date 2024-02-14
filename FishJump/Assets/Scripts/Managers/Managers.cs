@@ -10,9 +10,11 @@ public class Managers : MonoBehaviour
     #region Contents
     GameManagerEx _game = new GameManagerEx();
     PlatformManager _platform = new PlatformManager();
+    FirebaseManager _firebase = new FirebaseManager();
 
     public static GameManagerEx Game {  get { return Instance._game; } }
     public static PlatformManager Platform { get { return Instance._platform; } }
+    public static FirebaseManager Firebase { get { return Instance._firebase; } }
 	#endregion
 
 	#region Core
@@ -64,6 +66,7 @@ public class Managers : MonoBehaviour
 
             s_instance._game.Init();
             s_instance._platform.Init();
+            s_instance._firebase.Init();
         }		
 	}
 
