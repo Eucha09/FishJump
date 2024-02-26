@@ -7,6 +7,35 @@ public class SoundManager
     AudioSource[] _audioSources = new AudioSource[(int)Define.Sound.MaxCount];
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
+    public float BgmVolume
+    {
+        get 
+        { 
+            if (!PlayerPrefs.HasKey("BgmVolume"))
+                BgmVolume = 1.0f;
+            return PlayerPrefs.GetFloat("BgmVolume"); 
+        }
+        set 
+        { 
+            PlayerPrefs.SetFloat("BgmVolume", value);
+            _audioSources[(int)Define.Sound.Bgm].volume = value;
+        }
+    }
+    public float EffectVolume
+    {
+        get
+        {
+            if (!PlayerPrefs.HasKey("EffectVolume"))
+                EffectVolume = 1.0f;
+            return PlayerPrefs.GetFloat("EffectVolume"); 
+        }
+        set 
+        { 
+            PlayerPrefs.SetFloat("EffectVolume", value);
+            _audioSources[(int)Define.Sound.Effect].volume = value;
+        }
+    }
+
     // MP3 Player   -> AudioSource
     // MP3 음원     -> AudioClip
     // 관객(귀)     -> AudioListener
@@ -41,13 +70,13 @@ public class SoundManager
         _audioClips.Clear();
     }
 
-    public void Play(string path, Define.Sound type = Define.Sound.Effect, float volume = 1.0f, float pitch = 1.0f)
+    public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
-        Play(audioClip, type, volume, pitch);
+        Play(audioClip, type, pitch);
     }
 
-	public void Play(AudioClip audioClip, Define.Sound type = Define.Sound.Effect, float volume = 1.0f, float pitch = 1.0f)
+	public void Play(AudioClip audioClip, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
 	{
         if (audioClip == null)
             return;
@@ -59,7 +88,7 @@ public class SoundManager
 				audioSource.Stop();
 
 			audioSource.pitch = pitch;
-            audioSource.volume = volume;
+            audioSource.volume = BgmVolume;
 			audioSource.clip = audioClip;
 			audioSource.Play();
 		}
@@ -67,7 +96,7 @@ public class SoundManager
 		{
 			AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
 			audioSource.pitch = pitch;
-            audioSource.volume = volume;
+            audioSource.volume = EffectVolume;
             audioSource.PlayOneShot(audioClip);
 		}
 	}

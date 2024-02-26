@@ -319,7 +319,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2723620775423118031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &7398485795547236050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &7656863389888432406
 GameObject:
   m_ObjectHideFlags: 0

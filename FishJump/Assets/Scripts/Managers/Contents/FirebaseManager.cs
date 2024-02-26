@@ -8,6 +8,11 @@ using UnityEngine.Android;
 public class FirebaseManager
 {
     FirebaseApp _app;
+    public bool ReceiveMessage
+    {
+        get { return FirebaseMessaging.TokenRegistrationOnInitEnabled; }
+        set { FirebaseMessaging.TokenRegistrationOnInitEnabled = value; Debug.Log(FirebaseMessaging.TokenRegistrationOnInitEnabled); }
+    }
 
     public void Init()
     {
@@ -48,5 +53,15 @@ public class FirebaseManager
                 e.Message.Notification.Title,
                 e.Message.Notification.Body);
         }
+    }
+
+    public void AllowMessageReceipt()
+    {
+        FirebaseMessaging.TokenRegistrationOnInitEnabled = true;
+    }
+
+    public void DenyMessageReceipt()
+    {
+        FirebaseMessaging.TokenRegistrationOnInitEnabled = false;
     }
 }
