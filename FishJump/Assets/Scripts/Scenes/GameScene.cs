@@ -10,7 +10,7 @@ public class GameScene : BaseScene
 
         SceneType = Define.Scene.Game;
 
-        Screen.SetResolution(1440, 2960, true);
+        //Screen.SetResolution(1440, 2960, true);
 
         Managers.Resource.Instantiate("Background/Background");
 

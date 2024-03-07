@@ -22,15 +22,6 @@ public class Background : MonoBehaviour
         "Sky1",
         "Sky1",
         "Sky1-2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
-        "Sky2",
         "Sky2"
     };
 
@@ -39,9 +30,10 @@ public class Background : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < _backgroundList.Count; i++)
+        for (int i = 0; i < 50; i++)
         {
-            GameObject bg = Managers.Resource.Instantiate(_path + _backgroundList[i], this.transform);
+            int idx = Mathf.Min(i, _backgroundList.Count - 1);
+            GameObject bg = Managers.Resource.Instantiate(_path + _backgroundList[idx], this.transform);
             bg.transform.position = _startPos + Vector3.up * i * _gap;
         }
     }

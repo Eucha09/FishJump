@@ -19,8 +19,8 @@ public class UI_History : UI_Popup
         EventAuthButton2,
     }
 
-    int _eventScore1 = 0;
-    int _eventScore2 = 0;
+    int _eventScore1 = 5;
+    int _eventScore2 = 10;
 
     public override void Init()
     {
@@ -32,14 +32,33 @@ public class UI_History : UI_Popup
         GetText((int)Texts.HighScore).text = Managers.Game.HighScore.ToString();
         GetText((int)Texts.TodayHighScore).text = Managers.Game.TodayHighScore.ToString();
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
-        GetButton((int)Buttons.EventAuthButton1).gameObject.BindEvent(OnEventAuthButton);
-        GetButton((int)Buttons.EventAuthButton2).gameObject.BindEvent(OnEventAuthButton);
+        GetButton((int)Buttons.EventAuthButton1).gameObject.BindEvent(OnEventAuthButton1);
+        GetButton((int)Buttons.EventAuthButton2).gameObject.BindEvent(OnEventAuthButton2);
     }
 
     void Update()
     {
-        GetButton((int)Buttons.EventAuthButton1).interactable = Managers.Game.TodayHighScore >= _eventScore1;
-        GetButton((int)Buttons.EventAuthButton2).interactable = Managers.Game.TodayHighScore >= _eventScore2;
+        if (Managers.Game.AuthCompleted1 == 1)
+        {
+            GetButton((int)Buttons.EventAuthButton1).interactable = false;
+            GetButton((int)Buttons.EventAuthButton1).GetComponentInChildren<Text>().text = "완료";
+        }
+        else
+        {
+            GetButton((int)Buttons.EventAuthButton1).interactable = Managers.Game.TodayHighScore >= _eventScore1;
+            GetButton((int)Buttons.EventAuthButton1).GetComponentInChildren<Text>().text = "인증";
+        }
+
+        if (Managers.Game.AuthCompleted2 == 1)
+        {
+            GetButton((int)Buttons.EventAuthButton2).interactable = false;
+            GetButton((int)Buttons.EventAuthButton2).GetComponentInChildren<Text>().text = "완료";
+        }
+        else
+        {
+            GetButton((int)Buttons.EventAuthButton2).interactable = Managers.Game.TodayHighScore >= _eventScore2;
+            GetButton((int)Buttons.EventAuthButton2).GetComponentInChildren<Text>().text = "인증";
+        }
     }
 
     public void OnCloseButton(PointerEventData data)
@@ -47,8 +66,21 @@ public class UI_History : UI_Popup
         Managers.UI.ClosePopupUI();
     }
 
-    public void OnEventAuthButton(PointerEventData data)
+    public void OnEventAuthButton1(PointerEventData data)
     {
-        Managers.UI.ShowPopupUI<UI_StaffOnly>();
+        if (GetButton((int)Buttons.EventAuthButton1).interactable)
+        {
+            UI_StaffOnly ui = Managers.UI.ShowPopupUI<UI_StaffOnly>();
+            ui.AuthNumber = 1;
+        }
+    }
+
+    public void OnEventAuthButton2(PointerEventData data)
+    {
+        if (GetButton((int)Buttons.EventAuthButton2).interactable)
+        {
+            UI_StaffOnly ui = Managers.UI.ShowPopupUI<UI_StaffOnly>();
+            ui.AuthNumber = 2;
+        }
     }
 }

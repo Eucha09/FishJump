@@ -1,5 +1,6 @@
 using Firebase;
 using Firebase.Messaging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,11 @@ using UnityEngine.Android;
 public class FirebaseManager
 {
     FirebaseApp _app;
+
     public bool ReceiveMessage
     {
         get { return FirebaseMessaging.TokenRegistrationOnInitEnabled; }
-        set { FirebaseMessaging.TokenRegistrationOnInitEnabled = value; Debug.Log(FirebaseMessaging.TokenRegistrationOnInitEnabled); }
+        set { FirebaseMessaging.TokenRegistrationOnInitEnabled = value; if (!value) DeleteToken(); }
     }
 
     public void Init()
@@ -28,6 +30,7 @@ public class FirebaseManager
                 _app = FirebaseApp.DefaultInstance;
                 FirebaseMessaging.TokenReceived += OnTokenReceived;
                 FirebaseMessaging.MessageReceived += OnMessageReceived;
+                FirebaseMessaging.DeleteTokenAsync();
             }
             else
             {
@@ -55,13 +58,18 @@ public class FirebaseManager
         }
     }
 
-    public void AllowMessageReceipt()
+    async void DeleteToken()
     {
-        FirebaseMessaging.TokenRegistrationOnInitEnabled = true;
-    }
+        try
+        {
+            await FirebaseMessaging.DeleteTokenAsync();
 
-    public void DenyMessageReceipt()
-    {
-        FirebaseMessaging.TokenRegistrationOnInitEnabled = false;
+            Debug.Log("토큰이 성공적으로 삭제되었습니다.");
+        }
+        catch (Exception ex)
+        {
+            ReceiveMessage = true;
+            Debug.LogError("토큰 삭제 작업이 실패했습니다: " + ex.Message);
+        }
     }
 }

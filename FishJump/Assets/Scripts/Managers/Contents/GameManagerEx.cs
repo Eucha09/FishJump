@@ -10,6 +10,23 @@ public class GameManagerEx
     public int HighScore { get { ScoreInit(); return PlayerPrefs.GetInt("HighScore"); } }
     public int TodayHighScore { get { ScoreInit(); return PlayerPrefs.GetInt("TodayHighScore"); } }
 
+    public int AuthCompleted1
+    {
+        get { return PlayerPrefs.GetInt("AuthCompleted1"); }
+        set { PlayerPrefs.SetInt("AuthCompleted1", value); }
+    }
+    public int AuthCompleted2
+    {
+        get { return PlayerPrefs.GetInt("AuthCompleted2"); }
+        set { PlayerPrefs.SetInt("AuthCompleted2", value); }
+    }
+
+    public int StartingFirstTime
+    {
+        get { return PlayerPrefs.GetInt("StartingFirstTime"); }
+        set { PlayerPrefs.SetInt("StartingFirstTime", value); }
+    }
+
     public void Init()
     {
         ScoreInit();

@@ -47,9 +47,15 @@ public class UI_Settings : UI_Popup
     {
         Toggle t = GetObject((int)GameObjects.Toggle1).GetComponent<Toggle>();
         if (t.isOn)
+        {
             Managers.Firebase.ReceiveMessage = true;
+            Managers.UI.ShowPopupUI<UI_NotificationConsentResult>();
+        }
         else
+        {
             Managers.Firebase.ReceiveMessage = false;
+            Managers.UI.ShowPopupUI<UI_NotificationRejectionResult>();
+        }
     }
 
     public void OnToggle2(PointerEventData data)

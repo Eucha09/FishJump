@@ -10,11 +10,17 @@ public class TitleScene : BaseScene
 
         SceneType = Define.Scene.Title;
 
-        Screen.SetResolution(1440, 2960, true);
+        //Screen.SetResolution(1440, 2960, true);
 
         Managers.UI.ShowSceneUI<UI_TitleScene>();
 
         Managers.Sound.Play("Lost in heaven", Define.Sound.Bgm);
+
+        if (Managers.Game.StartingFirstTime == 0)
+        {
+            Managers.UI.ShowPopupUI<UI_AgreeReceiveNOtifications>();
+            Managers.Game.StartingFirstTime = 1;
+        }
     }
 
     int _clickCount = 0;
@@ -39,6 +45,12 @@ public class TitleScene : BaseScene
         {
             CancelInvoke("DoubleClick");
             Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("데이터 삭제");
+            PlayerPrefs.DeleteAll();
         }
     }
 

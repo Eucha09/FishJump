@@ -93,6 +93,12 @@ public class UIManager
 		return popup;
     }
 
+    public T SwapPopupUI<T>(string name = null) where T : UI_Popup
+    {
+        ClosePopupUI();
+        return ShowPopupUI<T>(name);
+    }
+
     public int PopupUICount()
     {
         return _popupStack.Count;

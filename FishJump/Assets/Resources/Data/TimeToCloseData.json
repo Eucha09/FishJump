@@ -9,45 +9,66 @@
     },
     {
       "level": "1",
-      "slow": "20",
-      "normal": "60",
-      "fast": "20",
+      "slow": "80",
+      "normal": "20",
+      "fast": "0",
       "variation": "0"
     },
     {
       "level": "2",
+      "slow": "60",
+      "normal": "40",
+      "fast": "0",
+      "variation": "0"
+    },
+    {
+      "level": "3",
+      "slow": "40",
+      "normal": "60",
+      "fast": "0",
+      "variation": "0"
+    },
+    {
+      "level": "4",
+      "slow": "40",
+      "normal": "40",
+      "fast": "20",
+      "variation": "0"
+    },
+    {
+      "level": "5",
       "slow": "20",
       "normal": "40",
       "fast": "40",
       "variation": "0"
     },
     {
-      "level": "3",
-      "slow": "10",
+      "level": "6",
+      "slow": "20",
       "normal": "40",
       "fast": "40",
-      "variation": "10"
+      "variation": "0"
     },
     {
-      "level": "4",
+      "level": "7",
       "slow": "10",
       "normal": "30",
       "fast": "50",
       "variation": "10"
     },
     {
-      "level": "5",
+      "level": "8",
+      "slow": "10",
+      "normal": "30",
+      "fast": "50",
+      "variation": "10"
+    },
+    {
+      "level": "9",
       "slow": "10",
       "normal": "20",
       "fast": "50",
       "variation": "20"
-    },
-    {
-      "level": "6",
-      "slow": "10",
-      "normal": "20",
-      "fast": "40",
-      "variation": "30"
     }
   ]
 } 

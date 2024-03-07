@@ -125,7 +125,9 @@ public class PlatformManager
     {
         PlatformType pt = new PlatformType();
         int level = (Managers.Game.Score - 1) / 5;
-        level = Mathf.Min(level, 6);
+        int maxLevel = Managers.Data.TimeTooCloseDict.Count - 1;
+        Debug.Log("maxLevel " + maxLevel);
+        level = Mathf.Min(level, maxLevel);
 
         // Time to close
         Dictionary<int, TimeToClose> timeToCloseDict = Managers.Data.TimeTooCloseDict;
