@@ -15,7 +15,7 @@ public class UI_Settings : UI_Popup
     {
         Toggle1,
         Toggle2,
-        Toggle3,
+        //Toggle3,
     }
 
     public override void Init()
@@ -27,15 +27,15 @@ public class UI_Settings : UI_Popup
 
         Toggle t1 = GetObject((int)GameObjects.Toggle1).GetComponent<Toggle>();
         Toggle t2 = GetObject((int)GameObjects.Toggle2).GetComponent<Toggle>();
-        Toggle t3 = GetObject((int)GameObjects.Toggle3).GetComponent<Toggle>();
+        //Toggle t3 = GetObject((int)GameObjects.Toggle3).GetComponent<Toggle>();
         t1.isOn = Managers.Firebase.ReceiveMessage;
         t2.isOn = Managers.Sound.BgmVolume > 0.5;
-        t3.isOn = Managers.Sound.EffectVolume > 0.5;
+        //t3.isOn = Managers.Sound.EffectVolume > 0.5;
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
         GetObject((int)GameObjects.Toggle1).BindEvent(OnToggle1);
         GetObject((int)GameObjects.Toggle2).BindEvent(OnToggle2);
-        GetObject((int)GameObjects.Toggle3).BindEvent(OnToggle3);
+        //GetObject((int)GameObjects.Toggle3).BindEvent(OnToggle3);
     }
 
     public void OnCloseButton(PointerEventData data)
@@ -67,12 +67,12 @@ public class UI_Settings : UI_Popup
             Managers.Sound.BgmVolume = 0.0f;
     }
 
-    public void OnToggle3(PointerEventData data)
-    {
-        Toggle t = GetObject((int)GameObjects.Toggle3).GetComponent<Toggle>();
-        if (t.isOn)
-            Managers.Sound.EffectVolume = 1.0f;
-        else
-            Managers.Sound.EffectVolume = 0.0f;
-    }
+    //public void OnToggle3(PointerEventData data)
+    //{
+    //    Toggle t = GetObject((int)GameObjects.Toggle3).GetComponent<Toggle>();
+    //    if (t.isOn)
+    //        Managers.Sound.EffectVolume = 1.0f;
+    //    else
+    //        Managers.Sound.EffectVolume = 0.0f;
+    //}
 }

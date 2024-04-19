@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - L_Platform
   - R_Platform
-  - Destroy
+  - L_Platform
   layers:
   - Default
   - TransparentFX
@@ -14,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Platform
+  - 
   - 
   - 
   - 
@@ -41,15 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3200776807
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 1399595443
-    locked: 0
-  - name: Platform
-    uniqueID: 3815506817
-    locked: 0
-  - name: Player
-    uniqueID: 1466401251
     locked: 0

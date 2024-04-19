@@ -19,8 +19,8 @@ public class UI_History : UI_Popup
         EventAuthButton2,
     }
 
-    int _eventScore1 = 5;
-    int _eventScore2 = 10;
+    int _eventScore1 = 35;
+    int _eventScore2 = 65;
 
     public override void Init()
     {
